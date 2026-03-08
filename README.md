@@ -7,7 +7,7 @@ Stop wrestling with nested `Container`, `ActionRow`, `Section`, and `TextDisplay
 [![PyPI](https://img.shields.io/pypi/v/dpy-layout-builder)](https://pypi.org/project/dpy-layout-builder/)
 [![Python](https://img.shields.io/pypi/pyversions/dpy-layout-builder)](https://pypi.org/project/dpy-layout-builder/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![discord.py](https://img.shields.io/badge/discord.py-%E2%89%A52.6-5865F2)](https://github.com/Rapptz/discord.py)
+[![discord.py](https://img.shields.io/badge/discord.py-%E2%89%A52.7.1-5865F2)](https://github.com/Rapptz/discord.py)
 
 ## Installation
 
@@ -109,15 +109,42 @@ view = (
 
 ### Select Menu
 
+Using `SelectOptionConfig` for rich options with descriptions:
+
+```python
+from dpy_layout_builder import LayoutViewBuilder, SelectOptionConfig
+
+async def on_role_selected(interaction: discord.Interaction):
+    values = interaction.data.get("values", [])
+    selected = values[0] if values else None
+    await interaction.response.send_message(f"You picked: {selected}", ephemeral=True)
+
+ROLE_OPTIONS = [
+    SelectOptionConfig(label="Announcements", value="announcements", description="Get pinged for announcements"),
+    SelectOptionConfig(label="Events", value="events", description="Get pinged for events"),
+    SelectOptionConfig(label="Giveaways", value="giveaways", description="Get pinged for giveaways"),
+]
+
+view = (
+    LayoutViewBuilder()
+    .add_text("Pick a notification role:")
+    .add_separator()
+    .add_select(
+        placeholder="Select a role...",
+        options=ROLE_OPTIONS,
+        callback=on_role_selected,
+    )
+    .build()
+)
+```
+
+You can also pass plain strings for simple options:
+
 ```python
 view = (
     LayoutViewBuilder()
     .add_text("Pick your favorite color:")
-    .add_select(
-        "Choose a color...",
-        ["Red", "Green", "Blue", "Purple"],
-        callback=color_chosen,
-    )
+    .add_select("Choose a color...", ["Red", "Green", "Blue"], callback=on_color)
     .build()
 )
 ```
@@ -173,7 +200,7 @@ The builder is safe to call `.build()` multiple times - it snapshots internal st
 ## Requirements
 
 - Python 3.10+
-- discord.py 2.6+ (with LayoutView / Components V2 support)
+- discord.py 2.7.1+ (with LayoutView / Components V2 support)
 
 ## License
 
