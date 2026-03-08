@@ -95,12 +95,12 @@ class LayoutViewBuilder:
     def add_separator(
         self,
         spacing: str = "small",
-        divider: bool = True
+        visible: bool = True
     ) -> "LayoutViewBuilder":
         """Add a visual separator line. spacing: 'small' or 'large'."""
         self._flush_buttons()
         spacing_value = discord.SeparatorSpacing.large if spacing == "large" else discord.SeparatorSpacing.small
-        self._items.append(ui.Separator(spacing=spacing_value, divider=divider))
+        self._items.append(ui.Separator(spacing=spacing_value, visible=visible))
         return self
 
     def add_section(
