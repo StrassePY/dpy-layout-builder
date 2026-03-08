@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dpy-layout-builder"
+version = "1.0.0"
+description = "A fluent builder pattern for creating Discord UI LayoutViews with containers."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Strasse" },
+]
+keywords = ["discord", "discord.py", "layout", "builder", "ui", "components", "layoutview"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Communications :: Chat",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+dependencies = [
+    "discord.py>=2.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/Strasse/dpy-layout-builder"
+Repository = "https://github.com/Strasse/dpy-layout-builder"
+Issues = "https://github.com/Strasse/dpy-layout-builder/issues"
